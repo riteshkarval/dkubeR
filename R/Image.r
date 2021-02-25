@@ -15,7 +15,7 @@
 #' @field digest 
 #' @field repo 
 #' @field timestamp 
-#' @field private 
+#' @field isprivate 
 #' @field project 
 #' @field description 
 #' @field tags 
@@ -32,11 +32,11 @@ Image <- R6::R6Class(
     `digest` = NULL,
     `repo` = NULL,
     `timestamp` = NULL,
-    `private` = NULL,
+    `isprivate` = NULL,
     `project` = NULL,
     `description` = NULL,
     `tags` = NULL,
-    initialize = function(`name`, `registry`, `image`, `digest`, `repo`, `timestamp`, `private`, `project`, `description`, `tags`){
+    initialize = function(`name`, `registry`, `image`, `digest`, `repo`, `timestamp`, `isprivate`, `project`, `description`, `tags`){
       if (!missing(`name`)) {
         stopifnot(is.character(`name`), length(`name`) == 1)
         self$`name` <- `name`
@@ -61,8 +61,8 @@ Image <- R6::R6Class(
         stopifnot(is.numeric(`timestamp`), length(`timestamp`) == 1)
         self$`timestamp` <- `timestamp`
       }
-      if (!missing(`private`)) {
-        self$`private` <- `private`
+      if (!missing(`isprivate`)) {
+        self$`isprivate` <- `isprivate`
       }
       if (!missing(`project`)) {
         stopifnot(is.character(`project`), length(`project`) == 1)
@@ -98,8 +98,8 @@ Image <- R6::R6Class(
       if (!is.null(self$`timestamp`)) {
         ImageObject[['timestamp']] <- self$`timestamp`
       }
-      if (!is.null(self$`private`)) {
-        ImageObject[['private']] <- self$`private`
+      if (!is.null(self$`isprivate`)) {
+        ImageObject[['isprivate']] <- self$`isprivate`
       }
       if (!is.null(self$`project`)) {
         ImageObject[['project']] <- self$`project`
@@ -133,8 +133,8 @@ Image <- R6::R6Class(
       if (!is.null(ImageObject$`timestamp`)) {
         self$`timestamp` <- ImageObject$`timestamp`
       }
-      if (!is.null(ImageObject$`private`)) {
-        self$`private` <- ImageObject$`private`
+      if (!is.null(ImageObject$`isprivate`)) {
+        self$`isprivate` <- ImageObject$`isprivate`
       }
       if (!is.null(ImageObject$`project`)) {
         self$`project` <- ImageObject$`project`
@@ -155,7 +155,7 @@ Image <- R6::R6Class(
            "digest": %s,
            "repo": %s,
            "timestamp": %d,
-           "private": %s,
+           "isprivate": %s,
            "project": %s,
            "description": %s,
            "tags": [%s]
@@ -166,7 +166,7 @@ Image <- R6::R6Class(
         self$`digest`,
         self$`repo`,
         self$`timestamp`,
-        self$`private`,
+        self$`isprivate`,
         self$`project`,
         self$`description`,
         lapply(self$`tags`, function(x) paste(paste0('"', x, '"'), sep=","))
@@ -180,7 +180,7 @@ Image <- R6::R6Class(
       self$`digest` <- ImageObject$`digest`
       self$`repo` <- ImageObject$`repo`
       self$`timestamp` <- ImageObject$`timestamp`
-      self$`private` <- ImageObject$`private`
+      self$`isprivate` <- ImageObject$`isprivate`
       self$`project` <- ImageObject$`project`
       self$`description` <- ImageObject$`description`
       self$`tags` <- ImageObject$`tags`

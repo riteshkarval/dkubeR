@@ -11,7 +11,7 @@
 #'
 #' @field version 
 #' @field image 
-#' @field private 
+#' @field isprivate 
 #' @field username 
 #' @field password 
 #'
@@ -23,10 +23,10 @@ DkubeContainerModelFrameworkDetails <- R6::R6Class(
   public = list(
     `version` = NULL,
     `image` = NULL,
-    `private` = NULL,
+    `isprivate` = NULL,
     `username` = NULL,
     `password` = NULL,
-    initialize = function(`version`, `image`, `private`, `username`, `password`){
+    initialize = function(`version`, `image`, `isprivate`, `username`, `password`){
       if (!missing(`version`)) {
         stopifnot(is.character(`version`), length(`version`) == 1)
         self$`version` <- `version`
@@ -35,8 +35,8 @@ DkubeContainerModelFrameworkDetails <- R6::R6Class(
         stopifnot(is.character(`image`), length(`image`) == 1)
         self$`image` <- `image`
       }
-      if (!missing(`private`)) {
-        self$`private` <- `private`
+      if (!missing(`isprivate`)) {
+        self$`isprivate` <- `isprivate`
       }
       if (!missing(`username`)) {
         stopifnot(is.character(`username`), length(`username`) == 1)
@@ -55,8 +55,8 @@ DkubeContainerModelFrameworkDetails <- R6::R6Class(
       if (!is.null(self$`image`)) {
         DkubeContainerModelFrameworkDetailsObject[['image']] <- self$`image`
       }
-      if (!is.null(self$`private`)) {
-        DkubeContainerModelFrameworkDetailsObject[['private']] <- self$`private`
+      if (!is.null(self$`isprivate`)) {
+        DkubeContainerModelFrameworkDetailsObject[['isprivate']] <- self$`isprivate`
       }
       if (!is.null(self$`username`)) {
         DkubeContainerModelFrameworkDetailsObject[['username']] <- self$`username`
@@ -75,8 +75,8 @@ DkubeContainerModelFrameworkDetails <- R6::R6Class(
       if (!is.null(DkubeContainerModelFrameworkDetailsObject$`image`)) {
         self$`image` <- DkubeContainerModelFrameworkDetailsObject$`image`
       }
-      if (!is.null(DkubeContainerModelFrameworkDetailsObject$`private`)) {
-        self$`private` <- DkubeContainerModelFrameworkDetailsObject$`private`
+      if (!is.null(DkubeContainerModelFrameworkDetailsObject$`isprivate`)) {
+        self$`isprivate` <- DkubeContainerModelFrameworkDetailsObject$`isprivate`
       }
       if (!is.null(DkubeContainerModelFrameworkDetailsObject$`username`)) {
         self$`username` <- DkubeContainerModelFrameworkDetailsObject$`username`
@@ -90,13 +90,13 @@ DkubeContainerModelFrameworkDetails <- R6::R6Class(
         '{
            "version": %s,
            "image": %s,
-           "private": %s,
+           "isprivate": %s,
            "username": %s,
            "password": %s
         }',
         self$`version`,
         self$`image`,
-        self$`private`,
+        self$`isprivate`,
         self$`username`,
         self$`password`
       )
@@ -105,7 +105,7 @@ DkubeContainerModelFrameworkDetails <- R6::R6Class(
       DkubeContainerModelFrameworkDetailsObject <- jsonlite::fromJSON(DkubeContainerModelFrameworkDetailsJson)
       self$`version` <- DkubeContainerModelFrameworkDetailsObject$`version`
       self$`image` <- DkubeContainerModelFrameworkDetailsObject$`image`
-      self$`private` <- DkubeContainerModelFrameworkDetailsObject$`private`
+      self$`isprivate` <- DkubeContainerModelFrameworkDetailsObject$`isprivate`
       self$`username` <- DkubeContainerModelFrameworkDetailsObject$`username`
       self$`password` <- DkubeContainerModelFrameworkDetailsObject$`password`
     }

@@ -13,7 +13,7 @@
 #' @field archived
 #' @field extract
 #' @field originalName
-#' @field private
+#' @field isprivate
 #' @field head_version_index
 #' @field head_version
 #' @field updated_time
@@ -39,7 +39,7 @@ DatumModelGenerated <- R6::R6Class(
     `archived` = NULL,
     `extract` = NULL,
     `originalName` = NULL,
-    `private` = NULL,
+    `isprivate` = NULL,
     `head_version_index` = NULL,
     `head_version` = NULL,
     `updated_time` = NULL,
@@ -54,7 +54,7 @@ DatumModelGenerated <- R6::R6Class(
     `tbref` = NULL,
     `user` = NULL,
     `details` = NULL,
-    initialize = function(`deleted`, `archived`, `extract`, `originalName`, `private`, `head_version_index`, `head_version`, `updated_time`, `storage_path`, `affinity`, `uuid`, `status`, `refresh_status`, `size`, `progress`, `timestamps`, `tbref`, `user`, `details`){
+    initialize = function(`deleted`, `archived`, `extract`, `originalName`, `isprivate`, `head_version_index`, `head_version`, `updated_time`, `storage_path`, `affinity`, `uuid`, `status`, `refresh_status`, `size`, `progress`, `timestamps`, `tbref`, `user`, `details`){
       if (!missing(`deleted`)) {
         self$`deleted` <- `deleted`
       }
@@ -68,9 +68,9 @@ DatumModelGenerated <- R6::R6Class(
         stopifnot(is.character(`originalName`), length(`originalName`) == 1)
         self$`originalName` <- `originalName`
       }
-      if (!missing(`private`)) {
-        stopifnot(is.character(`private`), length(`private`) == 1)
-        self$`private` <- `private`
+      if (!missing(`isprivate`)) {
+        stopifnot(is.character(`isprivate`), length(`isprivate`) == 1)
+        self$`isprivate` <- `isprivate`
       }
       if (!missing(`head_version_index`)) {
         stopifnot(is.numeric(`head_version_index`), length(`head_version_index`) == 1)
@@ -143,8 +143,8 @@ DatumModelGenerated <- R6::R6Class(
       if (!is.null(self$`originalName`)) {
         DatumModelGeneratedObject[['originalName']] <- self$`originalName`
       }
-      if (!is.null(self$`private`)) {
-        DatumModelGeneratedObject[['private']] <- self$`private`
+      if (!is.null(self$`isprivate`)) {
+        DatumModelGeneratedObject[['isprivate']] <- self$`isprivate`
       }
       if (!is.null(self$`head_version_index`)) {
         DatumModelGeneratedObject[['head_version_index']] <- self$`head_version_index`
@@ -205,8 +205,8 @@ DatumModelGenerated <- R6::R6Class(
       if (!is.null(DatumModelGeneratedObject$`originalName`)) {
         self$`originalName` <- DatumModelGeneratedObject$`originalName`
       }
-      if (!is.null(DatumModelGeneratedObject$`private`)) {
-        self$`private` <- DatumModelGeneratedObject$`private`
+      if (!is.null(DatumModelGeneratedObject$`isprivate`)) {
+        self$`isprivate` <- DatumModelGeneratedObject$`isprivate`
       }
       if (!is.null(DatumModelGeneratedObject$`head_version_index`)) {
         self$`head_version_index` <- DatumModelGeneratedObject$`head_version_index`
@@ -268,7 +268,7 @@ DatumModelGenerated <- R6::R6Class(
            "archived": %s,
            "extract": %s,
            "originalName": %s,
-           "private": %s,
+           "isprivate": %s,
            "head_version_index": %d,
            "head_version": %s,
            "updated_time": %s,
@@ -288,7 +288,7 @@ DatumModelGenerated <- R6::R6Class(
         self$`archived`,
         self$`extract`,
         self$`originalName`,
-        self$`private`,
+        self$`isprivate`,
         self$`head_version_index`,
         self$`head_version`,
         self$`updated_time`$toJSON(),
@@ -311,7 +311,7 @@ DatumModelGenerated <- R6::R6Class(
       self$`archived` <- DatumModelGeneratedObject$`archived`
       self$`extract` <- DatumModelGeneratedObject$`extract`
       self$`originalName` <- DatumModelGeneratedObject$`originalName`
-      self$`private` <- DatumModelGeneratedObject$`private`
+      self$`isprivate` <- DatumModelGeneratedObject$`isprivate`
       self$`head_version_index` <- DatumModelGeneratedObject$`head_version_index`
       self$`head_version` <- DatumModelGeneratedObject$`head_version`
       TimeStampsObject <- TimeStamps$new()

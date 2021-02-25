@@ -11,7 +11,7 @@
 #'
 #' @field deleted 
 #' @field archived 
-#' @field private 
+#' @field isprivate 
 #' @field category 
 #' @field cicdstatus 
 #' @field pipeline 
@@ -49,7 +49,7 @@ JobModelParametersGenerated <- R6::R6Class(
   public = list(
     `deleted` = NULL,
     `archived` = NULL,
-    `private` = NULL,
+    `isprivate` = NULL,
     `category` = NULL,
     `cicdstatus` = NULL,
     `pipeline` = NULL,
@@ -78,16 +78,16 @@ JobModelParametersGenerated <- R6::R6Class(
     `inputDatumRefs` = NULL,
     `inputFeaturesetRefs` = NULL,
     `details` = NULL,
-    initialize = function(`deleted`, `archived`, `private`, `category`, `cicdstatus`, `pipeline`, `subclass`, `hp_tuning_info`, `training_image`, `serving_image`, `scheduled`, `affinity`, `user`, `jobid`, `uuid`, `status`, `timestamps`, `runtime`, `ngpus_alloc`, `ngpus_max`, `tbref`, `studyref`, `trialref`, `best_trial_id`, `best_objective_value`, `accelerator`, `versions`, `tracking`, `inputDatumRefs`, `inputFeaturesetRefs`, `details`){
+    initialize = function(`deleted`, `archived`, `isprivate`, `category`, `cicdstatus`, `pipeline`, `subclass`, `hp_tuning_info`, `training_image`, `serving_image`, `scheduled`, `affinity`, `user`, `jobid`, `uuid`, `status`, `timestamps`, `runtime`, `ngpus_alloc`, `ngpus_max`, `tbref`, `studyref`, `trialref`, `best_trial_id`, `best_objective_value`, `accelerator`, `versions`, `tracking`, `inputDatumRefs`, `inputFeaturesetRefs`, `details`){
       if (!missing(`deleted`)) {
         self$`deleted` <- `deleted`
       }
       if (!missing(`archived`)) {
         self$`archived` <- `archived`
       }
-      if (!missing(`private`)) {
-        stopifnot(is.character(`private`), length(`private`) == 1)
-        self$`private` <- `private`
+      if (!missing(`isprivate`)) {
+        stopifnot(is.character(`isprivate`), length(`isprivate`) == 1)
+        self$`isprivate` <- `isprivate`
       }
       if (!missing(`category`)) {
         stopifnot(is.character(`category`), length(`category`) == 1)
@@ -211,8 +211,8 @@ JobModelParametersGenerated <- R6::R6Class(
       if (!is.null(self$`archived`)) {
         JobModelParametersGeneratedObject[['archived']] <- self$`archived`
       }
-      if (!is.null(self$`private`)) {
-        JobModelParametersGeneratedObject[['private']] <- self$`private`
+      if (!is.null(self$`isprivate`)) {
+        JobModelParametersGeneratedObject[['isprivate']] <- self$`isprivate`
       }
       if (!is.null(self$`category`)) {
         JobModelParametersGeneratedObject[['category']] <- self$`category`
@@ -309,8 +309,8 @@ JobModelParametersGenerated <- R6::R6Class(
       if (!is.null(JobModelParametersGeneratedObject$`archived`)) {
         self$`archived` <- JobModelParametersGeneratedObject$`archived`
       }
-      if (!is.null(JobModelParametersGeneratedObject$`private`)) {
-        self$`private` <- JobModelParametersGeneratedObject$`private`
+      if (!is.null(JobModelParametersGeneratedObject$`isprivate`)) {
+        self$`isprivate` <- JobModelParametersGeneratedObject$`isprivate`
       }
       if (!is.null(JobModelParametersGeneratedObject$`category`)) {
         self$`category` <- JobModelParametersGeneratedObject$`category`
@@ -428,7 +428,7 @@ JobModelParametersGenerated <- R6::R6Class(
         '{
            "deleted": %s,
            "archived": %s,
-           "private": %s,
+           "isprivate": %s,
            "category": %s,
            "cicdstatus": %s,
            "pipeline": %s,
@@ -460,7 +460,7 @@ JobModelParametersGenerated <- R6::R6Class(
         }',
         self$`deleted`,
         self$`archived`,
-        self$`private`,
+        self$`isprivate`,
         self$`category`,
         self$`cicdstatus`$toJSON(),
         self$`pipeline`$toJSON(),
@@ -495,7 +495,7 @@ JobModelParametersGenerated <- R6::R6Class(
       JobModelParametersGeneratedObject <- jsonlite::fromJSON(JobModelParametersGeneratedJson)
       self$`deleted` <- JobModelParametersGeneratedObject$`deleted`
       self$`archived` <- JobModelParametersGeneratedObject$`archived`
-      self$`private` <- JobModelParametersGeneratedObject$`private`
+      self$`isprivate` <- JobModelParametersGeneratedObject$`isprivate`
       self$`category` <- JobModelParametersGeneratedObject$`category`
       CICDStatusModelObject <- CICDStatusModel$new()
       self$`cicdstatus` <- CICDStatusModelObject$fromJSON(jsonlite::toJSON(JobModelParametersGeneratedObject$cicdstatus, auto_unbox = TRUE))

@@ -13,7 +13,7 @@
 #' @field password 
 #' @field apikey 
 #' @field sshkey 
-#' @field private 
+#' @field isprivate 
 #'
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
@@ -25,8 +25,8 @@ GitAccessCredentials <- R6::R6Class(
     `password` = NULL,
     `apikey` = NULL,
     `sshkey` = NULL,
-    `private` = NULL,
-    initialize = function(`username`, `password`, `apikey`, `sshkey`, `private`){
+    `isprivate` = NULL,
+    initialize = function(`username`, `password`, `apikey`, `sshkey`, `isprivate`){
       if (!missing(`username`)) {
         stopifnot(is.character(`username`), length(`username`) == 1)
         self$`username` <- `username`
@@ -43,8 +43,8 @@ GitAccessCredentials <- R6::R6Class(
         stopifnot(is.character(`sshkey`), length(`sshkey`) == 1)
         self$`sshkey` <- `sshkey`
       }
-      if (!missing(`private`)) {
-        self$`private` <- `private`
+      if (!missing(`isprivate`)) {
+        self$`isprivate` <- `isprivate`
       }
     },
     toJSON = function() {
@@ -61,8 +61,8 @@ GitAccessCredentials <- R6::R6Class(
       if (!is.null(self$`sshkey`)) {
         GitAccessCredentialsObject[['sshkey']] <- self$`sshkey`
       }
-      if (!is.null(self$`private`)) {
-        GitAccessCredentialsObject[['private']] <- self$`private`
+      if (!is.null(self$`isprivate`)) {
+        GitAccessCredentialsObject[['isprivate']] <- self$`isprivate`
       }
 
       GitAccessCredentialsObject
@@ -81,8 +81,8 @@ GitAccessCredentials <- R6::R6Class(
       if (!is.null(GitAccessCredentialsObject$`sshkey`)) {
         self$`sshkey` <- GitAccessCredentialsObject$`sshkey`
       }
-      if (!is.null(GitAccessCredentialsObject$`private`)) {
-        self$`private` <- GitAccessCredentialsObject$`private`
+      if (!is.null(GitAccessCredentialsObject$`isprivate`)) {
+        self$`isprivate` <- GitAccessCredentialsObject$`isprivate`
       }
     },
     toJSONString = function() {
@@ -92,13 +92,13 @@ GitAccessCredentials <- R6::R6Class(
            "password": %s,
            "apikey": %s,
            "sshkey": %s,
-           "private": %s
+           "isprivate": %s
         }',
         self$`username`,
         self$`password`,
         self$`apikey`,
         self$`sshkey`,
-        self$`private`
+        self$`isprivate`
       )
     },
     fromJSONString = function(GitAccessCredentialsJson) {
@@ -107,7 +107,7 @@ GitAccessCredentials <- R6::R6Class(
       self$`password` <- GitAccessCredentialsObject$`password`
       self$`apikey` <- GitAccessCredentialsObject$`apikey`
       self$`sshkey` <- GitAccessCredentialsObject$`sshkey`
-      self$`private` <- GitAccessCredentialsObject$`private`
+      self$`isprivate` <- GitAccessCredentialsObject$`isprivate`
     }
   )
 )

@@ -11,7 +11,7 @@
 #'
 #' @field name
 #' @field image
-#' @field private
+#' @field isprivate
 #' @field username
 #' @field password
 #' @field project
@@ -26,13 +26,13 @@ Data32 <- R6::R6Class(
   public = list(
     `name` = NULL,
     `image` = NULL,
-    `private` = NULL,
+    `isprivate` = NULL,
     `username` = NULL,
     `password` = NULL,
     `project` = NULL,
     `description` = NULL,
     `tags` = NULL,
-    initialize = function(`name`, `image`, `private`, `username`, `password`, `project`, `description`, `tags`){
+    initialize = function(`name`, `image`, `isprivate`, `username`, `password`, `project`, `description`, `tags`){
       if (!missing(`name`)) {
         stopifnot(is.character(`name`), length(`name`) == 1)
         self$`name` <- `name`
@@ -41,8 +41,8 @@ Data32 <- R6::R6Class(
         stopifnot(is.character(`image`), length(`image`) == 1)
         self$`image` <- `image`
       }
-      if (!missing(`private`)) {
-        self$`private` <- `private`
+      if (!missing(`isprivate`)) {
+        self$`isprivate` <- `isprivate`
       }
       if (!missing(`username`)) {
         stopifnot(is.character(`username`), length(`username`) == 1)
@@ -74,8 +74,8 @@ Data32 <- R6::R6Class(
       if (!is.null(self$`image`)) {
         Data32Object[['image']] <- self$`image`
       }
-      if (!is.null(self$`private`)) {
-        Data32Object[['private']] <- self$`private`
+      if (!is.null(self$`isprivate`)) {
+        Data32Object[['isprivate']] <- self$`isprivate`
       }
       if (!is.null(self$`username`)) {
         Data32Object[['username']] <- self$`username`
@@ -103,8 +103,8 @@ Data32 <- R6::R6Class(
       if (!is.null(Data32Object$`image`)) {
         self$`image` <- Data32Object$`image`
       }
-      if (!is.null(Data32Object$`private`)) {
-        self$`private` <- Data32Object$`private`
+      if (!is.null(Data32Object$`isprivate`)) {
+        self$`isprivate` <- Data32Object$`isprivate`
       }
       if (!is.null(Data32Object$`username`)) {
         self$`username` <- Data32Object$`username`
@@ -127,7 +127,7 @@ Data32 <- R6::R6Class(
         '{
            "name": %s,
            "image": %s,
-           "private": %s,
+           "isprivate": %s,
            "username": %s,
            "password": %s,
            "project": %s,
@@ -136,7 +136,7 @@ Data32 <- R6::R6Class(
         }',
         self$`name`,
         self$`image`,
-        self$`private`,
+        self$`isprivate`,
         self$`username`,
         self$`password`,
         self$`project`,
@@ -148,7 +148,7 @@ Data32 <- R6::R6Class(
       Data32Object <- jsonlite::fromJSON(Data32Json)
       self$`name` <- Data32Object$`name`
       self$`image` <- Data32Object$`image`
-      self$`private` <- Data32Object$`private`
+      self$`isprivate` <- Data32Object$`isprivate`
       self$`username` <- Data32Object$`username`
       self$`password` <- Data32Object$`password`
       self$`project` <- Data32Object$`project`
